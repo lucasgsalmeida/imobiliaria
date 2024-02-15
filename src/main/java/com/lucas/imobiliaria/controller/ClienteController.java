@@ -3,7 +3,7 @@ package com.lucas.imobiliaria.controller;
 import com.lucas.imobiliaria.model.domain.cliente.Cliente;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteRequestDTO;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteRespondeDTO;
-import com.lucas.imobiliaria.model.domain.cliente.repository.ClienteRepository;
+import com.lucas.imobiliaria.model.domain.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
