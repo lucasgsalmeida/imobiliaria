@@ -1,6 +1,8 @@
 package com.lucas.imobiliaria.controller;
 
+import com.lucas.imobiliaria.infra.security.TokenService;
 import com.lucas.imobiliaria.model.domain.repository.UsuariosRepository;
+import com.lucas.imobiliaria.model.domain.users.LoginResponseDTO;
 import com.lucas.imobiliaria.model.domain.users.Usuarios;
 import com.lucas.imobiliaria.model.domain.users.UsuariosRequestDTO;
 import com.lucas.imobiliaria.model.domain.users.UsuariosResponseDTO;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuariosController {
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -29,7 +34,10 @@ public class UsuariosController {
     public ResponseEntity login(@RequestBody @Validated UsuariosResponseDTO data) {
         var userpw = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(userpw);
-        return ResponseEntity.ok().build();
+
+        var token = tokenService.gerarToken((Usuarios) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
