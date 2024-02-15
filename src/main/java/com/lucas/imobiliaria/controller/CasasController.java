@@ -1,7 +1,7 @@
 package com.lucas.imobiliaria.controller;
 
 import com.lucas.imobiliaria.model.domain.aluguel.CasasAluguel;
-import com.lucas.imobiliaria.model.domain.aluguel.CasasAluguelDTO;
+import com.lucas.imobiliaria.model.domain.aluguel.CasasAluguelResponseDTO;
 import com.lucas.imobiliaria.model.domain.aluguel.CasasAluguelRequestDTO;
 import com.lucas.imobiliaria.model.domain.aluguel.repository.CasasAluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,8 @@ public class CasasController {
 private CasasAluguelRepository casasAluguel;
 
 @GetMapping
-    public List<CasasAluguelDTO> getAll() {
-        List<CasasAluguelDTO> lista = casasAluguel.findAll().stream().map(CasasAluguelDTO::new).toList();
+    public List<CasasAluguelResponseDTO> getAll() {
+        List<CasasAluguelResponseDTO> lista = casasAluguel.findAll().stream().map(CasasAluguelResponseDTO::new).toList();
         return lista;
 }
 
