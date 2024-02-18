@@ -28,7 +28,7 @@ public class ClienteController {
         return lista;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public void saveCliente(@RequestBody ClienteRequestDTO data) {
         Cliente cs = new Cliente(data);
         cr.save(cs);

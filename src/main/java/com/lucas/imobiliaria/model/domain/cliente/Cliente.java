@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Table(name = "Clientes")
-@Entity(name = "Clientes")
 @Getter
 @Setter
 public class Cliente {
@@ -13,8 +13,11 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
     private String cnpj;
+
+    // Construtores
 
     public Cliente(Integer id, String nome, String cnpj) {
         this.id = id;
@@ -28,6 +31,5 @@ public class Cliente {
     }
 
     public Cliente() {
-
     }
 }

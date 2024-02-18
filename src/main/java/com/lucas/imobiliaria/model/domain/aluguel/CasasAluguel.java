@@ -1,20 +1,26 @@
 package com.lucas.imobiliaria.model.domain.aluguel;
 
+import com.lucas.imobiliaria.model.domain.cliente.Cliente;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDate;
-import java.util.List;
-@Table(name = "CasasAluguel")
-@Entity(name = "CasasAluguel")
+
+@Entity
+@Table(name = "casas_aluguel")
 @Getter
 @Setter
 public class CasasAluguel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    private Cliente cliente;
+
     private String rua;
     private String numero;
     private String complemento;
