@@ -1,4 +1,6 @@
 package com.lucas.imobiliaria.model.domain.users;
 
-public record UsuariosRequestDTO (String email, String senha, UserRole role){
+import com.lucas.imobiliaria.model.domain.cliente.Clientes;
+
+public record UsuariosRequestDTO (Long idCliente, String email, String senha, UserRole role){
 }

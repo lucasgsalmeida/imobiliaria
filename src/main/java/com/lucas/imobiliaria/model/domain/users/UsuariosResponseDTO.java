@@ -1,8 +1,10 @@
 package com.lucas.imobiliaria.model.domain.users;
 
-public record UsuariosResponseDTO(Integer id, String email, String senha, UserRole role) {
+import com.lucas.imobiliaria.model.domain.cliente.Clientes;
+
+public record UsuariosResponseDTO(Long id, Clientes clientes, String email, String senha, UserRole role) {
 
     public UsuariosResponseDTO(Usuarios user) {
-        this(user.getId(), user.getEmail(), user.getSenha(), user.getRole());
+        this(user.getId(), user.getClientes(), user.getEmail(), user.getSenha(), user.getRole());
     }
 }

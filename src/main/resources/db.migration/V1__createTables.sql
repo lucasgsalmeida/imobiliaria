@@ -1,4 +1,4 @@
-/*
+
 create table Clientes
 (
     id int,
@@ -16,7 +16,7 @@ create table Usuarios (
                           constraint user_pk primary key (id, id_cliente)
 );
 
-CREATE TABLE CasasAluguel (
+CREATE TABLE Casas (
                               id INT,
                               id_cliente INT,
                               rua VARCHAR(100),
@@ -36,11 +36,10 @@ CREATE TABLE CasasAluguel (
                               constraint casalu_pk primary key (id)
 );
 
-create table ImagensAluguel(
+create table ImagensImoveis(
                                id int,
-                               casa_aluguel_id int,
+                               casa_id int,
                                url TEXT,
-                               constraint img_alug_fk foreign key (casa_aluguel_id) references CasasAluguel(id),
-                               constraint img_pk primary key (id, casa_aluguel_id)
+                               constraint img_alug_fk foreign key (casa_id) references Casas(id),
+                               constraint img_pk primary key (id, casa_id)
 );
-*/

@@ -1,35 +1,31 @@
 package com.lucas.imobiliaria.model.domain.cliente;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "Clientes")
 @Getter
 @Setter
-public class Cliente {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Clientes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String nome;
     private String cnpj;
 
     // Construtores
 
-    public Cliente(Integer id, String nome, String cnpj) {
-        this.id = id;
-        this.nome = nome;
-        this.cnpj = cnpj;
-    }
 
-    public Cliente(ClienteRequestDTO clienteRequestDTO) {
+    public Clientes(ClienteRequestDTO clienteRequestDTO) {
         this.nome = clienteRequestDTO.nome();
         this.cnpj = clienteRequestDTO.cnpj();
-    }
-
-    public Cliente() {
     }
 }
