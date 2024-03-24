@@ -2,16 +2,15 @@ package com.lucas.imobiliaria.controller;
 
 import com.lucas.imobiliaria.model.domain.imoveis.*;
 import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensImoveis;
-import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensRepository;
+import com.lucas.imobiliaria.model.domain.repository.ImagensRepository;
 import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensRequestDTO;
 import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensResponseDTO;
 import com.lucas.imobiliaria.model.domain.repository.CasasRepository;
+import com.lucas.imobiliaria.service.CasasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -19,52 +18,22 @@ import java.util.List;
 public class CasasController {
 
     @Autowired
-    private CasasRepository casasAluguel;
+    private CasasService casasService;
 
-    @Autowired
-    private ImagensRepository imgRepository;
-
-    @GetMapping("/get/all")
-    public List<CasasResponseImagensDTO> getAll() {
-        List<CasasResponseImagensDTO> lista = new ArrayList<>();
-
-        casasAluguel.findAll().forEach(casa -> {
-            List<ImagensResponseDTO> imagensImoveis = imgRepository.findAllByCasaId(casa.getId());
-            CasasResponseDTO casasAluguelDTO = new CasasResponseDTO(casa);
-            lista.add(new CasasResponseImagensDTO(casasAluguelDTO, imagensImoveis));
-        });
-        return lista;
+    /*
+    @GetMapping("/get")
+    public CasasResponseImagensDTO getCasaById(@RequestParam(name="casa") Long idCasa, @RequestParam(name="cliente") Long idCliente) {
+        return casasService.getCasaById(idCasa, idCliente);
     }
-
+  */
+    @GetMapping("/get/all")
+    public ResponseEntity getAll() {
+        return casasService.getAll();
+    }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody ImoveisDTO registroDTO) {
-        if (registroDTO == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        CasasRequestDTO data = registroDTO.casas();
-        Casas casa = new Casas(data);
-
-        if (data != null) {
-            casasAluguel.save(casa);
-        }
-
-        List<ImagensRequestDTO> imagensDto = registroDTO.imagens();
-        if (imagensDto != null) {
-            for (ImagensRequestDTO imgs : imagensDto) {
-                ImagensImoveis imovel = new ImagensImoveis(casa, imgs);
-                imgRepository.save(imovel);
-            }
-        }
-
-        return ResponseEntity.ok().build();
-    }
-
-
-    private List<ImagensResponseDTO> getImagem(Long id) {
-        List<ImagensResponseDTO> lista = imgRepository.findById(id).stream().map(ImagensResponseDTO::new).toList();
-        return lista;
+    public ResponseEntity register(@RequestBody CasasRequestDTO registroDTO) {
+        return casasService.register(registroDTO);
     }
 }
 

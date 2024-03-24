@@ -1,7 +1,6 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.services.CepService;
-import com.mashape.unirest.http.HttpResponse;
+import com.lucas.imobiliaria.service.CepService;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

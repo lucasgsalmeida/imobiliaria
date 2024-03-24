@@ -1,10 +1,9 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.model.domain.cliente.Clientes;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteRequestDTO;
-import com.lucas.imobiliaria.model.domain.cliente.ClienteResponseDTO;
-import com.lucas.imobiliaria.model.domain.repository.ClienteRepository;
+import com.lucas.imobiliaria.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,23 +13,20 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository cr;
+    private ClienteService clienteService;
 
     @GetMapping("/id/{id}")
-    public Clientes getClienteById(@PathVariable Long id) {
-        return cr.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com o ID: " + id));
+    public ResponseEntity getClienteById(@PathVariable Long id) {
+        return clienteService.getClienteById(id);
     }
 
     @GetMapping("/all")
-    public List<ClienteResponseDTO> getAllClientes() {
-        List<ClienteResponseDTO> lista = cr.findAll().stream().map(ClienteResponseDTO::new).toList();
-        return lista;
+    public ResponseEntity getAllClientes() {
+        return clienteService.getAllClientes();
     }
 
     @PostMapping("/register")
-    public void saveCliente(@RequestBody ClienteRequestDTO data) {
-        Clientes cs = new Clientes(data);
-        cr.save(cs);
+    public ResponseEntity saveCliente(@RequestBody ClienteRequestDTO data) {
+        return clienteService.saveCliente(data);
     }
 }

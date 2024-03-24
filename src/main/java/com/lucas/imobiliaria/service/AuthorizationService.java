@@ -1,4 +1,5 @@
-package com.lucas.imobiliaria.services;
+
+package com.lucas.imobiliaria.service;
 
 import com.lucas.imobiliaria.model.domain.repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;

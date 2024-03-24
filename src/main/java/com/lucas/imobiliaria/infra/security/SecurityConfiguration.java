@@ -31,6 +31,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "auth/user").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/cliente/all").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/casas/get/all").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/casas/get/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/casas/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/cep/**").permitAll()
 
                         .anyRequest().authenticated())

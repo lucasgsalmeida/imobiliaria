@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.services;
+package com.lucas.imobiliaria.service;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
