@@ -5,6 +5,7 @@ import com.lucas.imobiliaria.model.domain.cliente.ClienteResponseDTO;
 import com.lucas.imobiliaria.model.domain.cliente.Clientes;
 import com.lucas.imobiliaria.model.domain.repository.ClienteRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,16 +37,16 @@ public class ClienteService {
         return ResponseEntity.ok(lista);
     }
 
-    @Transactional
-    public ResponseEntity saveCliente(@RequestBody ClienteRequestDTO data) {
-        Clientes cs = new Clientes(data);
-
-        if (cs != null) {
-            cr.save(cs);
-            return ResponseEntity.ok().build();
-        } else {
+    public ResponseEntity register(@Valid ClienteRequestDTO data) {
+        System.out.println("\n\n" + data);
+        if (data == null) {
             return ResponseEntity.badRequest().build();
         }
+
+        Clientes cs = new Clientes(data);
+
+        cr.save(cs);
+        return ResponseEntity.ok().build();
     }
 
 }

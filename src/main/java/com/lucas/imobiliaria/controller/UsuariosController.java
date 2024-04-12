@@ -10,8 +10,11 @@ import com.lucas.imobiliaria.model.domain.users.UsuariosResponseDTO;
 import com.lucas.imobiliaria.service.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +37,14 @@ public class UsuariosController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Validated UsuariosRequestDTO data) {
-        return usuariosService.register(data);
+    public ResponseEntity register(@RequestBody @Validated UsuariosRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+        return usuariosService.register(data, userDetails);
     }
+
+    @PostMapping("/register/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity registerAdmin(@RequestBody @Validated UsuariosRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+        return usuariosService.registerAdministrator(data, userDetails);
+    }
+
 }

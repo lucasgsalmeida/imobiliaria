@@ -21,9 +21,8 @@ public class Usuarios implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
-    private Clientes clientes;
+    private Long idCliente;
 
     private String email;
     private String senha;
@@ -32,8 +31,8 @@ public class Usuarios implements UserDetails {
     public Usuarios() {
     }
 
-    public Usuarios(Clientes clientes, String email, String senha, UserRole role) {
-        this.clientes = clientes;
+    public Usuarios(Long idCliente, String email, String senha, UserRole role) {
+        this.idCliente = idCliente;
         this.email = email;
         this.senha = senha;
         this.role = role;

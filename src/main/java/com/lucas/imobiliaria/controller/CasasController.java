@@ -9,6 +9,8 @@ import com.lucas.imobiliaria.model.domain.repository.CasasRepository;
 import com.lucas.imobiliaria.service.CasasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,20 @@ public class CasasController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody CasasRequestDTO registroDTO) {
-        return casasService.register(registroDTO);
+    public ResponseEntity register(@RequestBody CasasRequestDTO registroDTO, @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println(userDetails.getUsername());
+        System.out.println(userDetails.getPassword());
+        return casasService.register(registroDTO, userDetails);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity delete(@RequestBody CasasResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+        return casasService.delete(data, userDetails);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody CasasResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+        return casasService.update(data, userDetails);
     }
 }
 
