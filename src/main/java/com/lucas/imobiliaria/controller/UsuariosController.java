@@ -1,21 +1,13 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.infra.security.TokenService;
-import com.lucas.imobiliaria.model.domain.repository.ClienteRepository;
-import com.lucas.imobiliaria.model.domain.repository.UsuariosRepository;
-import com.lucas.imobiliaria.model.domain.users.LoginResponseDTO;
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
 import com.lucas.imobiliaria.model.domain.users.UsuariosRequestDTO;
 import com.lucas.imobiliaria.model.domain.users.UsuariosResponseDTO;
 import com.lucas.imobiliaria.service.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,4 +39,13 @@ public class UsuariosController {
         return usuariosService.registerAdministrator(data, userDetails);
     }
 
-}
+    @GetMapping("/get/id")
+    public ResponseEntity<?> getUsuarioAndCliente(@AuthenticationPrincipal UserDetails userDetails) {
+        return usuariosService.getUsuarioAndCliente(userDetails);
+    }
+
+    @PostMapping("/verify-token")
+    public ResponseEntity<String> verifyToken(@RequestHeader("Authorization") String authorizationHeader) {
+        return usuariosService.verifyToken(authorizationHeader);
+    }
+    }

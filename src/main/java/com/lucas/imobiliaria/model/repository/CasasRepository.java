@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.repository;
+package com.lucas.imobiliaria.model.repository;
 
 import com.lucas.imobiliaria.model.domain.imoveis.Casas;
 import com.lucas.imobiliaria.model.domain.imoveis.CasasResponseDTO;

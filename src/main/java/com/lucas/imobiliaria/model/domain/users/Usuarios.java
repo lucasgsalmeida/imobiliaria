@@ -23,7 +23,7 @@ public class Usuarios implements UserDetails {
 
     @JoinColumn(name = "id_cliente", referencedColumnName = "id")
     private Long idCliente;
-
+    private String nome;
     private String email;
     private String senha;
     private UserRole role;
@@ -31,14 +31,16 @@ public class Usuarios implements UserDetails {
     public Usuarios() {
     }
 
-    public Usuarios(Long idCliente, String email, String senha, UserRole role) {
+    public Usuarios(Long idCliente, String nome, String email, String senha, UserRole role) {
         this.idCliente = idCliente;
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.role = role;
     }
 
-    public Usuarios(String email, String senha, UserRole role) {
+    public Usuarios(String nome, String email, String senha, UserRole role) {
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.role = role;
@@ -51,6 +53,18 @@ public class Usuarios implements UserDetails {
         } else {
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" +
+                "id=" + id +
+                ", idCliente=" + idCliente +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", role=" + role +
+                '}';
     }
 
     @Override

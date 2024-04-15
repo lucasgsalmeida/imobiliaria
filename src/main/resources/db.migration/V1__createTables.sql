@@ -1,4 +1,4 @@
-
+/*
 create table Clientes
 (
     id int,
@@ -43,3 +43,5 @@ create table ImagensImoveis(
                                constraint img_alug_fk foreign key (casa_id) references Casas(id),
                                constraint img_pk primary key (id, casa_id)
 );
+
+ */

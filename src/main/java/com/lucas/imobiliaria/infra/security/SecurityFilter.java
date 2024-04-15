@@ -1,14 +1,12 @@
 package com.lucas.imobiliaria.infra.security;
 
-import com.lucas.imobiliaria.model.domain.repository.UsuariosRepository;
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
+import com.lucas.imobiliaria.model.repository.UsuariosRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;

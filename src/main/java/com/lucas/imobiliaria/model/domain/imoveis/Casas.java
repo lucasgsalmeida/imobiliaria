@@ -2,6 +2,8 @@ package com.lucas.imobiliaria.model.domain.imoveis;
 
 import com.lucas.imobiliaria.model.domain.cliente.Clientes;
 import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensImoveis;
+import com.lucas.imobiliaria.model.domain.obrigacoes.Obrigacoes;
+import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListObrigacoes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +25,10 @@ public class Casas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JoinColumn(table= "clientes", name = "id_cliente", referencedColumnName = "id")
     private Long idCliente;
+
+    private String nome;
     private String rua;
     private String numero;
     private String complemento;
@@ -42,9 +46,13 @@ public class Casas {
     private String tipoAnuncio;
 
     @OneToMany
+    private List<Obrigacoes> listObrigacoes;
+
+    @OneToMany
     private List<ImagensImoveis> imagensImoveis;
 
     public Casas(CasasRequestDTO casasRequestDTO) {
+        this.nome = casasRequestDTO.nome();
         this.rua = casasRequestDTO.rua();
         this.numero = casasRequestDTO.numero();
         this.complemento = casasRequestDTO.complemento();

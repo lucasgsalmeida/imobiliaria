@@ -6,5 +6,5 @@ import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensRequestD
 import java.time.LocalDate;
 import java.util.List;
 
-public record CasasRequestDTO(String rua, String numero, String complemento, String cep, String cidade, String estado, String bairro, int numeroQuartos, int numeroBanheiros, double precoAluguel, boolean mobiliada, boolean disponivel, LocalDate dataDisponibilidade, String descricao, String tipoAnuncio, List<ImagensImoveis> imagensImoveis) {
+public record CasasRequestDTO(String nome, String rua, String numero, String complemento, String cep, String cidade, String estado, String bairro, int numeroQuartos, int numeroBanheiros, double precoAluguel, boolean mobiliada, boolean disponivel, LocalDate dataDisponibilidade, String descricao, String tipoAnuncio, List<ImagensImoveis> imagensImoveis) {
 }

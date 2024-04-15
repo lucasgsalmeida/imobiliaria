@@ -1,7 +1,7 @@
 
 package com.lucas.imobiliaria.service;
 
-import com.lucas.imobiliaria.model.domain.repository.UsuariosRepository;
+import com.lucas.imobiliaria.model.repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

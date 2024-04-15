@@ -3,15 +3,13 @@ package com.lucas.imobiliaria.service;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteRequestDTO;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteResponseDTO;
 import com.lucas.imobiliaria.model.domain.cliente.Clientes;
-import com.lucas.imobiliaria.model.domain.repository.ClienteRepository;
-import jakarta.transaction.Transactional;
+import com.lucas.imobiliaria.model.repository.ClienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

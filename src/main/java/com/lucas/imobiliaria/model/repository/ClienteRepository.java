@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.repository;
+package com.lucas.imobiliaria.model.repository;
 
 import com.lucas.imobiliaria.model.domain.cliente.Clientes;
 import org.springframework.data.jpa.repository.JpaRepository;
