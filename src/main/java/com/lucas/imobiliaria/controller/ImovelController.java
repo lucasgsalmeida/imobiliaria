@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("casas")
-public class CasaController {
+public class ImovelController {
 
     @Autowired
     private ImovelService casasService;
