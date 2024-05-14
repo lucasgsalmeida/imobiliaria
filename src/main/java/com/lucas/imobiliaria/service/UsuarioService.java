@@ -108,6 +108,7 @@ public class UsuarioService {
      */
     public ResponseEntity registerMaster(UsuarioRequestDTO data) {
 
+        System.out.println("Testando register master: \n" + data);
         if(this.repository.findByEmail(data.email()) != null) {
             return ResponseEntity.badRequest().build();
         }
