@@ -24,8 +24,8 @@ public class ClienteController {
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity getAllClientes() {
-        return clienteService.getAllClientes();
+    public ResponseEntity getAllCliente() {
+        return clienteService.getAllCliente();
     }
 
     @PostMapping("/register")

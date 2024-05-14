@@ -1,13 +1,13 @@
 package com.lucas.imobiliaria.service;
 
 import com.lucas.imobiliaria.infra.UserStateCache;
-import com.lucas.imobiliaria.model.domain.imoveis.Casas;
-import com.lucas.imobiliaria.model.domain.imoveis.CasasRequestDTO;
-import com.lucas.imobiliaria.model.domain.imoveis.CasasResponseDTO;
-import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensImoveis;
-import com.lucas.imobiliaria.model.repository.CasasRepository;
+import com.lucas.imobiliaria.model.domain.imovel.Imovel;
+import com.lucas.imobiliaria.model.domain.imovel.ImovelRequestDTO;
+import com.lucas.imobiliaria.model.domain.imovel.ImovelResponseDTO;
+import com.lucas.imobiliaria.model.domain.imovel.imagensImoveis.ImagensImoveis;
+import com.lucas.imobiliaria.model.domain.users.Usuario;
+import com.lucas.imobiliaria.model.repository.ImovelRepository;
 import com.lucas.imobiliaria.model.repository.ImagensRepository;
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CasasService {
+public class ImovelService {
 
     @Autowired
-    private CasasRepository casasAluguel;
+    private ImovelRepository imovelAluguel;
 
     @Autowired
     private ImagensRepository imgRepository;
@@ -31,53 +31,53 @@ public class CasasService {
     private UserStateCache userStateCache;
 
     public ResponseEntity getCasaById(Long idCasa, Long idCliente) {
-        Casas casaDto = casasAluguel.findCasaByIdAndCliente(idCasa, idCliente);
-        CasasResponseDTO responseDTO = new CasasResponseDTO(casaDto);
+        Imovel casaDto = imovelAluguel.findCasaByIdAndCliente(idCasa, idCliente);
+        ImovelResponseDTO responseDTO = new ImovelResponseDTO(casaDto);
         return ResponseEntity.ok(responseDTO);
     }
 
     public ResponseEntity getAll(UserDetails userDetails) {
 
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        List<CasasResponseDTO> lista = casasAluguel.findCasaByCliente(user.getIdCliente());
+        List<ImovelResponseDTO> lista = imovelAluguel.findCasaByCliente(user.getIdCliente());
         return ResponseEntity.ok(lista);
     }
 
     @Transactional
-    public ResponseEntity register(CasasRequestDTO data, UserDetails userDetails) {
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+    public ResponseEntity register(ImovelRequestDTO data, UserDetails userDetails) {
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (data == null) {
             return ResponseEntity.badRequest().build();
         }
 
 
-        Casas casa = new Casas(data);
+        Imovel casa = new Imovel(data);
         casa.setIdCliente(user.getIdCliente());
         imgRepository.saveAll(data.imagensImoveis());
-        casasAluguel.save(casa);
+        imovelAluguel.save(casa);
         return ResponseEntity.ok().build();
     }
 
     @Transactional
-    public ResponseEntity delete(CasasResponseDTO data, UserDetails userDetails) {
+    public ResponseEntity delete(ImovelResponseDTO data, UserDetails userDetails) {
 
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Casas casa = casasAluguel.findCasaByIdAndCliente(data.id(), user.getIdCliente());
+        Imovel casa = imovelAluguel.findCasaByIdAndCliente(data.id(), user.getIdCliente());
         if (casa == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        casasAluguel.delete(casa);
+        imovelAluguel.delete(casa);
 
         List<ImagensImoveis> imgs = casa.getImagensImoveis();
         imgRepository.deleteAll(imgs);
@@ -85,17 +85,17 @@ public class CasasService {
     }
 
     @Transactional
-    public ResponseEntity update(CasasResponseDTO data, UserDetails userDetails) {
+    public ResponseEntity update(ImovelResponseDTO data, UserDetails userDetails) {
 
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Casas casa = casasAluguel.findCasaByIdAndCliente(data.id(), user.getIdCliente());
+        Imovel casa = imovelAluguel.findCasaByIdAndCliente(data.id(), user.getIdCliente());
         BeanUtils.copyProperties(data, casa);
-        casasAluguel.save(casa);
+        imovelAluguel.save(casa);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,7 +1,7 @@
 
 package com.lucas.imobiliaria.service;
 
-import com.lucas.imobiliaria.model.repository.UsuariosRepository;
+import com.lucas.imobiliaria.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class AuthorizationService implements UserDetailsService {
 
     @Autowired
-    private UsuariosRepository rep;
+    private UsuarioRepository rep;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return rep.findByEmail(username);

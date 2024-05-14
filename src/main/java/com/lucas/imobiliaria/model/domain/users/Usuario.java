@@ -1,6 +1,6 @@
 package com.lucas.imobiliaria.model.domain.users;
 
-import com.lucas.imobiliaria.model.domain.cliente.Clientes;
+import com.lucas.imobiliaria.model.domain.cliente.Cliente;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +12,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 @Getter
 @Setter
-public class Usuarios implements UserDetails {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +28,10 @@ public class Usuarios implements UserDetails {
     private String senha;
     private UserRole role;
 
-    public Usuarios() {
+    public Usuario() {
     }
 
-    public Usuarios(Long idCliente, String nome, String email, String senha, UserRole role) {
+    public Usuario(Long idCliente, String nome, String email, String senha, UserRole role) {
         this.idCliente = idCliente;
         this.nome = nome;
         this.email = email;
@@ -39,7 +39,7 @@ public class Usuarios implements UserDetails {
         this.role = role;
     }
 
-    public Usuarios(String nome, String email, String senha, UserRole role) {
+    public Usuario(String nome, String email, String senha, UserRole role) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -57,7 +57,7 @@ public class Usuarios implements UserDetails {
 
     @Override
     public String toString() {
-        return "Usuarios{" +
+        return "Usuario{" +
                 "id=" + id +
                 ", idCliente=" + idCliente +
                 ", nome='" + nome + '\'' +

@@ -2,7 +2,7 @@ package com.lucas.imobiliaria.service;
 
 import com.lucas.imobiliaria.model.domain.cliente.ClienteRequestDTO;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteResponseDTO;
-import com.lucas.imobiliaria.model.domain.cliente.Clientes;
+import com.lucas.imobiliaria.model.domain.cliente.Cliente;
 import com.lucas.imobiliaria.model.repository.ClienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class ClienteService {
     private ClienteRepository cr;
 
     public ResponseEntity getClienteById(@PathVariable Long id) {
-        Clientes clienteProcurado = cr.findById(id).orElseThrow();
+        Cliente clienteProcurado = cr.findById(id).orElseThrow();
 
         if (clienteProcurado != null) {
             ClienteResponseDTO responseDTO = new ClienteResponseDTO(clienteProcurado);
@@ -30,7 +30,7 @@ public class ClienteService {
         }
     }
 
-    public ResponseEntity getAllClientes() {
+    public ResponseEntity getAllCliente() {
         List<ClienteResponseDTO> lista = cr.findAll().stream().map(ClienteResponseDTO::new).toList();
         return ResponseEntity.ok(lista);
     }
@@ -41,7 +41,7 @@ public class ClienteService {
             return ResponseEntity.badRequest().build();
         }
 
-        Clientes cs = new Clientes(data);
+        Cliente cs = new Cliente(data);
 
         cr.save(cs);
         return ResponseEntity.ok().build();

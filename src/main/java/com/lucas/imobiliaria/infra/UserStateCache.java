@@ -1,6 +1,6 @@
 package com.lucas.imobiliaria.infra;
 
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
+import com.lucas.imobiliaria.model.domain.users.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -9,13 +9,13 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class UserStateCache {
 
-    private final Map<String, Usuarios> userStateMap = new ConcurrentHashMap<>();
+    private final Map<String, Usuario> userStateMap = new ConcurrentHashMap<>();
 
-    public void saveUserState(String username, Usuarios user) {
+    public void saveUserState(String username, Usuario user) {
         userStateMap.put(username, user);
     }
 
-    public Usuarios getUserState(String username) {
+    public Usuario getUserState(String username) {
         return userStateMap.get(username);
     }
 

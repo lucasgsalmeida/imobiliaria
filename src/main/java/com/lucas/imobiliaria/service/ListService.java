@@ -1,13 +1,13 @@
 package com.lucas.imobiliaria.service;
 
 import com.lucas.imobiliaria.infra.UserStateCache;
-import com.lucas.imobiliaria.model.domain.obrigacoes.Obrigacoes;
-import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListObrigacoes;
-import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListRequestDTO;
-import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListResponseDTO;
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
+import com.lucas.imobiliaria.model.domain.obrigacao.Obrigacao;
+import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListObrigacao;
+import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListRequestDTO;
+import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListResponseDTO;
+import com.lucas.imobiliaria.model.domain.users.Usuario;
 import com.lucas.imobiliaria.model.repository.ListRepository;
-import com.lucas.imobiliaria.model.repository.ObrigacoesRepository;
+import com.lucas.imobiliaria.model.repository.ObrigacaoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ListService {
     private ListRepository repository;
 
     @Autowired
-    private ObrigacoesRepository obrigacoesRepository;
+    private ObrigacaoRepository obrigacoesRepository;
 
     @Autowired
     private UserStateCache userStateCache;
@@ -34,21 +34,21 @@ public class ListService {
             return ResponseEntity.badRequest().build();
         }
 
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        Obrigacoes obri = obrigacoesRepository.getById(data.idObrigacao());
+        Obrigacao obri = obrigacoesRepository.getById(data.idObrigacao());
 
         if (obri.getIdCliente() != user.getIdCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        ListObrigacoes listObrigacoes = new ListObrigacoes(data);
-        listObrigacoes.setIdCliente(user.getIdCliente());
-        repository.save(listObrigacoes);
+        ListObrigacao listObrigacao = new ListObrigacao(data);
+        listObrigacao.setIdCliente(user.getIdCliente());
+        repository.save(listObrigacao);
         return ResponseEntity.ok().build();
     }
 
@@ -66,10 +66,10 @@ public class ListService {
 
 
     public ResponseEntity getById(Long id, UserDetails userDetails) {
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
-        ListObrigacoes obri = repository.getById(id);
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
+        ListObrigacao obri = repository.getById(id);
 
-        Obrigacoes obrigacoes = obrigacoesRepository.getById(obri.getIdObrigacao());
+        Obrigacao obrigacoes = obrigacoesRepository.getById(obri.getIdObrigacao());
 
         if (obrigacoes.getIdCliente() != user.getIdCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -90,19 +90,19 @@ public class ListService {
     }
 
     public ResponseEntity update(ListResponseDTO data, UserDetails userDetails) {
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Obrigacoes obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
+        Obrigacao obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
 
         if (obrigacoes.getIdCliente() != user.getIdCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        ListObrigacoes obri = repository.getById(data.id());
+        ListObrigacao obri = repository.getById(data.id());
 
         if (obri.getIdCliente() != user.getIdCliente() && obri.getIdCliente() != data.idCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -115,19 +115,19 @@ public class ListService {
     }
 
     public ResponseEntity delete(ListResponseDTO data, UserDetails userDetails) {
-        Usuarios user = userStateCache.getUserState(userDetails.getUsername());
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Obrigacoes obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
+        Obrigacao obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
 
         if (obrigacoes.getIdCliente() != user.getIdCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        ListObrigacoes obri = repository.getById(data.id());
+        ListObrigacao obri = repository.getById(data.id());
 
         if (obri.getIdCliente() != user.getIdCliente() && obri.getIdCliente() != data.idCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

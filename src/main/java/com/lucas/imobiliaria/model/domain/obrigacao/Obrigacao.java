@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.obrigacoes;
+package com.lucas.imobiliaria.model.domain.obrigacao;
 
 
 import jakarta.persistence.*;
@@ -12,10 +12,10 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "Obrigacoes")
+@Table(name = "Obrigacao")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Obrigacoes {
+public class Obrigacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Obrigacoes {
     private Recorrencia recorrencia;
     private Date diaVencimento;
 
-    public Obrigacoes(ObrigacoesRequestDTO dto) {
+    public Obrigacao(ObrigacaoRequestDTO dto) {
         this.nome = dto.nome();
         this.isRecorrente = dto.isRecorrente();
         this.recorrencia = dto.recorrencia();

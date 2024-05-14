@@ -1,12 +1,7 @@
 package com.lucas.imobiliaria.model.repository;
 
-import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensImoveis;
-import com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis.ImagensResponseDTO;
+import com.lucas.imobiliaria.model.domain.imovel.imagensImoveis.ImagensImoveis;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface ImagensRepository extends JpaRepository<ImagensImoveis, Long> {
 

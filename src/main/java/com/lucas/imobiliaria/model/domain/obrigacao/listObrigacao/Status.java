@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes;
+package com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao;
 
 public enum Status {
 

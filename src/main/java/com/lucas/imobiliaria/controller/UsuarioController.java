@@ -1,8 +1,8 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.model.domain.users.UsuariosRequestDTO;
-import com.lucas.imobiliaria.model.domain.users.UsuariosResponseDTO;
-import com.lucas.imobiliaria.service.UsuariosService;
+import com.lucas.imobiliaria.model.domain.users.UsuarioRequestDTO;
+import com.lucas.imobiliaria.model.domain.users.UsuarioResponseDTO;
+import com.lucas.imobiliaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,29 +13,29 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
-public class UsuariosController {
+public class UsuarioController {
 
     @Autowired
-    private UsuariosService usuariosService;
+    private UsuarioService usuariosService;
 
     @GetMapping("/user")
-    public ResponseEntity<UsuariosResponseDTO> getUsuarioById(@RequestParam(name = "id") Long id) {
+    public ResponseEntity<UsuarioResponseDTO> getUsuarioById(@RequestParam(name = "id") Long id) {
         return usuariosService.getUsuarioById(id);
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Validated UsuariosResponseDTO data) {
+    public ResponseEntity login(@RequestBody @Validated UsuarioResponseDTO data) {
         return usuariosService.login(data);
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Validated UsuariosRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity register(@RequestBody @Validated UsuarioRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return usuariosService.register(data, userDetails);
     }
 
     @PostMapping("/register/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity registerAdmin(@RequestBody @Validated UsuariosRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity registerAdmin(@RequestBody @Validated UsuarioRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return usuariosService.registerAdministrator(data, userDetails);
     }
 

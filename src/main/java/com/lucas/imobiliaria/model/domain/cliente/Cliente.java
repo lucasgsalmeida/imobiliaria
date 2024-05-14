@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "Cliente")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Clientes {
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Clientes {
     @NotNull
     private String cnpj;
 
-    public Clientes(ClienteRequestDTO clienteRequestDTO) {
+    public Cliente(ClienteRequestDTO clienteRequestDTO) {
         this.nome = clienteRequestDTO.nome();
         this.cnpj = clienteRequestDTO.cnpj();
     }

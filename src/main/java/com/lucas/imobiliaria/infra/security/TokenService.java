@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.lucas.imobiliaria.model.domain.users.Usuarios;
+import com.lucas.imobiliaria.model.domain.users.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String gerarToken(Usuarios user) {
+    public String gerarToken(Usuario user) {
         try {
             Algorithm algo = Algorithm.HMAC256(secret);
             String token = JWT.create()

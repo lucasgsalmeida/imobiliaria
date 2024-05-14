@@ -13,7 +13,7 @@ Estrutura do projeto:
 src/main/java/com.lucas.imobiliaria:
 model.domain: Pacote contendo modelos de domínio da aplicação.
 cliente: Pacote contendo classes relacionadas a clientes.
-Clientes: Entidade representando um cliente.
+Cliente: Entidade representando um cliente.
 ClienteRequestDTO: DTO para criação de clientes.
 ClienteResponseDTO: DTO para consulta de clientes.
 imoveis: Pacote contendo classes relacionadas a imóveis.
@@ -27,18 +27,18 @@ ImagensRequestDTO: DTO para criação de imagens de imóveis.
 ImagensResponseDTO: DTO para consulta de imagens de imóveis.
 repository: Pacote contendo repositórios da aplicação.
 CasasRepository: Repositório para a entidade Casas.
-ClienteRepository: Repositório para a entidade Clientes.
+ClienteRepository: Repositório para a entidade Cliente.
 ImagensRepository: Repositório para a entidade ImagensImoveis.
 users: Pacote contendo classes relacionadas a usuários.
-Usuarios: Entidade representando um usuário.
+Usuario: Entidade representando um usuário.
 UserRole: Enum representando os roles de usuário (ADMIN e USER).
 LoginResponseDTO: DTO contendo o token de autenticação após o login.
-UsuariosRequestDTO: DTO para criação de usuários.
-UsuariosResponseDTO: DTO para consulta de usuários.
+UsuarioRequestDTO: DTO para criação de usuários.
+UsuarioResponseDTO: DTO para consulta de usuários.
 controller: Pacote contendo controladores da aplicação.
 CasasController: Controlador para gerenciamento de casas.
 ClienteController: Controlador para gerenciamento de clientes.
-UsuariosController: Controlador para gerenciamento de usuários e autenticação.
+UsuarioController: Controlador para gerenciamento de usuários e autenticação.
 infra.security: Pacote contendo classes relacionadas à segurança.
 TokenService: Classe responsável por gerar e validar tokens JWT.
 SecurityConfiguration: Classe de configuração do Spring Security.

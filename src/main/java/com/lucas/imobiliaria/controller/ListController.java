@@ -1,7 +1,7 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListRequestDTO;
-import com.lucas.imobiliaria.model.domain.obrigacoes.listObrigacoes.ListResponseDTO;
+import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListRequestDTO;
+import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListResponseDTO;
 import com.lucas.imobiliaria.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

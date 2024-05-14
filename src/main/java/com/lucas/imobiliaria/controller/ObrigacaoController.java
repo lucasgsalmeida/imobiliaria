@@ -1,8 +1,8 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.model.domain.obrigacoes.ObrigacoesRequestDTO;
-import com.lucas.imobiliaria.model.domain.obrigacoes.ObrigacoesResponseDTO;
-import com.lucas.imobiliaria.service.ObrigacoesService;
+import com.lucas.imobiliaria.model.domain.obrigacao.ObrigacaoRequestDTO;
+import com.lucas.imobiliaria.model.domain.obrigacao.ObrigacaoResponseDTO;
+import com.lucas.imobiliaria.service.ObrigacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("obrigacoes")
-public class ObrigacoesController {
+public class ObrigacaoController {
 
     @Autowired
-    private ObrigacoesService service;
+    private ObrigacaoService service;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody ObrigacoesRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity register(@RequestBody ObrigacaoRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return service.register(data, userDetails);
     }
 
@@ -32,12 +32,12 @@ public class ObrigacoesController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity update(@RequestBody ObrigacoesResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity update(@RequestBody ObrigacaoResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return service.update(data, userDetails);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity delete(@RequestBody ObrigacoesResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity delete(@RequestBody ObrigacaoResponseDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return service.delete(data, userDetails);
     }
 }

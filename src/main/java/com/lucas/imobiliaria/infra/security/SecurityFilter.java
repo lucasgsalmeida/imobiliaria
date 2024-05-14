@@ -1,6 +1,6 @@
 package com.lucas.imobiliaria.infra.security;
 
-import com.lucas.imobiliaria.model.repository.UsuariosRepository;
+import com.lucas.imobiliaria.model.repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UsuariosRepository repository;
+    private UsuarioRepository repository;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var token = this.recuperarToken(request);

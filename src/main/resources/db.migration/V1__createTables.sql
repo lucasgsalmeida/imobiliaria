@@ -1,5 +1,5 @@
 /*
-create table Clientes
+create table Cliente
 (
     id int,
     nome TEXT,
@@ -7,16 +7,16 @@ create table Clientes
     constraint cli_pk primary key (id)
 );
 
-create table Usuarios (
+create table Usuario (
                           id int,
                           id_cliente int,
                           email TEXT,
                           senha TEXT,
-                          constraint user_fk foreign key (id_cliente) references Clientes(id),
+                          constraint user_fk foreign key (id_cliente) references Cliente(id),
                           constraint user_pk primary key (id, id_cliente)
 );
 
-CREATE TABLE Casas (
+CREATE TABLE Imovel (
                               id INT,
                               id_cliente INT,
                               rua VARCHAR(100),
@@ -32,7 +32,7 @@ CREATE TABLE Casas (
                               disponivel BOOLEAN,
                               dataDisponibilidade DATE,
                               descricao TEXT,
-                              constraint casalu_fk foreign key (id_cliente) references Clientes(id),
+                              constraint casalu_fk foreign key (id_cliente) references Cliente(id),
                               constraint casalu_pk primary key (id)
 );
 
@@ -40,7 +40,7 @@ create table ImagensImoveis(
                                id int,
                                casa_id int,
                                url TEXT,
-                               constraint img_alug_fk foreign key (casa_id) references Casas(id),
+                               constraint img_alug_fk foreign key (casa_id) references Imovel(id),
                                constraint img_pk primary key (id, casa_id)
 );
 

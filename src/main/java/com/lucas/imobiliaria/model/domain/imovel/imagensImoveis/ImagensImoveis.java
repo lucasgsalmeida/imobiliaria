@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.imoveis.imagensImoveis;
+package com.lucas.imobiliaria.model.domain.imovel.imagensImoveis;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

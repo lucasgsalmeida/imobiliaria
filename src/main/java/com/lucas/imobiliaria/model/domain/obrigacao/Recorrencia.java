@@ -1,6 +1,4 @@
-package com.lucas.imobiliaria.model.domain.obrigacoes;
-
-import java.util.Date;
+package com.lucas.imobiliaria.model.domain.obrigacao;
 
 public enum Recorrencia {
 
