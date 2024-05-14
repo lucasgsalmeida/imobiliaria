@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.infra.security;
+package com.lucas.imobiliaria.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

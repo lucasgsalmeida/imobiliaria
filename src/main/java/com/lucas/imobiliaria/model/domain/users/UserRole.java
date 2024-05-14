@@ -2,7 +2,9 @@ package com.lucas.imobiliaria.model.domain.users;
 
 public enum UserRole {
     ADMIN("admin"),
-    USER("user");
+    USER("user"),
+    MASTER("master");
+
 
     private String role;
 
@@ -13,5 +15,6 @@ public enum UserRole {
     public String getRole() {
         return this.role;
     }
+
 
 }

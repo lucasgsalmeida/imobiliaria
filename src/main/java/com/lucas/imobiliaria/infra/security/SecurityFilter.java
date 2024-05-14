@@ -1,6 +1,7 @@
 package com.lucas.imobiliaria.infra.security;
 
 import com.lucas.imobiliaria.model.repository.UsuarioRepository;
+import com.lucas.imobiliaria.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

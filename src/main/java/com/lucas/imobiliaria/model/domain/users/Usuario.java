@@ -50,21 +50,14 @@ public class Usuario implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRole.ADMIN) {
             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        } else {
+        }
+        if (this.role == UserRole.MASTER) {
+            return List.of(new SimpleGrantedAuthority("ROLE_MASTER"), new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        if (this.role == UserRole.USER) {
             return List.of(new SimpleGrantedAuthority("ROLE_USER"));
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", idCliente=" + idCliente +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", role=" + role +
-                '}';
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
