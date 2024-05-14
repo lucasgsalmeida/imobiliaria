@@ -12,13 +12,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("login")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuariosService;
 
-    @GetMapping("/user")
+    @GetMapping("/get")
     public ResponseEntity<UsuarioResponseDTO> getUsuarioById(@RequestParam(name = "id") Long id) {
         return usuariosService.getUsuarioById(id);
     }
@@ -28,7 +28,7 @@ public class UsuarioController {
         return usuariosService.login(data);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/create")
     public ResponseEntity register(@RequestBody @Validated UsuarioRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return usuariosService.register(data, userDetails);
     }

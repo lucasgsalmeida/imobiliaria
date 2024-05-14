@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("list")
+@RequestMapping("listobrigacao")
 public class ListController {
 
     @Autowired
     private ListService service;
 
-    @PostMapping("/register")
+    @PostMapping("/create")
     public ResponseEntity register(@RequestBody ListRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return service.register(data, userDetails);
     }

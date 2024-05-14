@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("casas")
+@RequestMapping("imovel")
 public class ImovelController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class ImovelController {
         return casasService.getAll(userDetails);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/create")
     public ResponseEntity register(@RequestBody ImovelRequestDTO registroDTO, @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println(userDetails.getUsername());
         System.out.println(userDetails.getPassword());

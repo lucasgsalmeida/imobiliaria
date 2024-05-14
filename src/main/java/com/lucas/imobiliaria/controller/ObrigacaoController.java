@@ -10,13 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("obrigacoes")
+@RequestMapping("obrigacao")
 public class ObrigacaoController {
 
     @Autowired
     private ObrigacaoService service;
 
-    @PostMapping("/register")
+    @PostMapping("/create")
     public ResponseEntity register(@RequestBody ObrigacaoRequestDTO data, @AuthenticationPrincipal UserDetails userDetails) {
         return service.register(data, userDetails);
     }
