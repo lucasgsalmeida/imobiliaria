@@ -1,6 +1,5 @@
-package com.lucas.imobiliaria.model.domain.users;
+package com.lucas.imobiliaria.model.domain.usuario;
 
-import com.lucas.imobiliaria.model.domain.cliente.Cliente;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +20,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JoinColumn(table = "cliente", name = "id_cliente", referencedColumnName = "id")
     private Long idCliente;
     private String nome;
     private String email;

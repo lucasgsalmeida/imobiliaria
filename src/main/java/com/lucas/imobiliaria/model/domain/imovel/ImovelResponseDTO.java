@@ -1,6 +1,6 @@
 package com.lucas.imobiliaria.model.domain.imovel;
 
-import com.lucas.imobiliaria.model.domain.imovel.imagensImoveis.ImagensImoveis;
+import com.lucas.imobiliaria.model.domain.imovel.imagensImovel.ImagensImoveis;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -4,7 +4,7 @@ import com.lucas.imobiliaria.infra.UserStateCache;
 import com.lucas.imobiliaria.model.domain.obrigacao.Obrigacao;
 import com.lucas.imobiliaria.model.domain.obrigacao.ObrigacaoRequestDTO;
 import com.lucas.imobiliaria.model.domain.obrigacao.ObrigacaoResponseDTO;
-import com.lucas.imobiliaria.model.domain.users.Usuario;
+import com.lucas.imobiliaria.model.domain.usuario.Usuario;
 import com.lucas.imobiliaria.model.repository.ObrigacaoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

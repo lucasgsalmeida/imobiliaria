@@ -1,7 +1,7 @@
 package com.lucas.imobiliaria.controller;
 
-import com.lucas.imobiliaria.model.domain.users.UsuarioRequestDTO;
-import com.lucas.imobiliaria.model.domain.users.UsuarioResponseDTO;
+import com.lucas.imobiliaria.model.domain.usuario.UsuarioRequestDTO;
+import com.lucas.imobiliaria.model.domain.usuario.UsuarioResponseDTO;
 import com.lucas.imobiliaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

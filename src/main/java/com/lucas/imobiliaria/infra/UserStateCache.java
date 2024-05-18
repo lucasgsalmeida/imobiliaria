@@ -1,6 +1,6 @@
 package com.lucas.imobiliaria.infra;
 
-import com.lucas.imobiliaria.model.domain.users.Usuario;
+import com.lucas.imobiliaria.model.domain.usuario.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

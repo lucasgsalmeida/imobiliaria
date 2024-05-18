@@ -22,8 +22,8 @@ public class ListController {
     }
 
     @GetMapping("/get/all")
-    public ResponseEntity getAll() {
-        return service.getAll();
+    public ResponseEntity getAll(@AuthenticationPrincipal UserDetails userDetails) {
+        return service.getAll(userDetails);
     }
 
     @GetMapping("/get/{id}")

@@ -5,7 +5,7 @@ import com.lucas.imobiliaria.model.domain.obrigacao.Obrigacao;
 import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListObrigacao;
 import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListRequestDTO;
 import com.lucas.imobiliaria.model.domain.obrigacao.listObrigacao.ListResponseDTO;
-import com.lucas.imobiliaria.model.domain.users.Usuario;
+import com.lucas.imobiliaria.model.domain.usuario.Usuario;
 import com.lucas.imobiliaria.model.repository.ListRepository;
 import com.lucas.imobiliaria.model.repository.ObrigacaoRepository;
 import org.springframework.beans.BeanUtils;
@@ -52,15 +52,15 @@ public class ListService {
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity getAll() {
-        List<ListResponseDTO> list = repository.findAll().stream()
-                .map(obri -> new ListResponseDTO(
-                        obri.getId(),
-                        obrigacoesRepository.getById(obri.getIdObrigacao()),
-                        obri.getIdCliente(),
-                        obri.getData(),
-                        obri.getStatus())
-                ).toList();
+    public ResponseEntity getAll(UserDetails userDetails) {
+
+        Usuario user = userStateCache.getUserState(userDetails.getUsername());
+
+        if (user == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        List<ListResponseDTO> list = repository.findAllByIdCliente(user.getIdCliente());
         return ResponseEntity.ok(list);
     }
 
@@ -69,23 +69,12 @@ public class ListService {
         Usuario user = userStateCache.getUserState(userDetails.getUsername());
         ListObrigacao obri = repository.getById(id);
 
-        Obrigacao obrigacoes = obrigacoesRepository.getById(obri.getIdObrigacao());
-
-        if (obrigacoes.getIdCliente() != user.getIdCliente()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
 
         if (obri.getIdCliente() != user.getIdCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        ListResponseDTO responseDTO = new ListResponseDTO(
-                obri.getId(),
-                obrigacoes,
-                obri.getIdCliente(),
-                obri.getData(),
-                obri.getStatus()
-        );
+        ListResponseDTO responseDTO = new ListResponseDTO(obri);
         return ResponseEntity.ok(responseDTO);
     }
 
@@ -96,18 +85,11 @@ public class ListService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
-        Obrigacao obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
-
-        if (obrigacoes.getIdCliente() != user.getIdCliente()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
         ListObrigacao obri = repository.getById(data.id());
 
         if (obri.getIdCliente() != user.getIdCliente() && obri.getIdCliente() != data.idCliente()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
         BeanUtils.copyProperties(data, obri);
         repository.save(obri);
         return ResponseEntity.ok().build();
@@ -119,12 +101,6 @@ public class ListService {
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
-        Obrigacao obrigacoes = obrigacoesRepository.getById(data.obrigacoes().getId());
-
-        if (obrigacoes.getIdCliente() != user.getIdCliente()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
         ListObrigacao obri = repository.getById(data.id());

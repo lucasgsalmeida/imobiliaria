@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.imovel.imagensImoveis;
+package com.lucas.imobiliaria.model.domain.imovel.imagensImovel;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "imagens_imoveis")
+@Table(name = "imagens_imovel")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImagensImoveis {
+public class ImagensImovel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class ImagensImoveis {
     @Column(name = "url")
     private String url;
 
-    public ImagensImoveis(ImagensRequestDTO img) {
+    public ImagensImovel(ImagensRequestDTO img) {
         this.url = img.url();
     }
 

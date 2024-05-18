@@ -4,7 +4,7 @@ import com.lucas.imobiliaria.infra.ClienteStateCache;
 import com.lucas.imobiliaria.infra.UserStateCache;
 import com.lucas.imobiliaria.model.domain.cliente.ClienteResponseDTO;
 import com.lucas.imobiliaria.model.domain.cliente.Cliente;
-import com.lucas.imobiliaria.model.domain.users.*;
+import com.lucas.imobiliaria.model.domain.usuario.*;
 import com.lucas.imobiliaria.model.repository.ClienteRepository;
 import com.lucas.imobiliaria.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

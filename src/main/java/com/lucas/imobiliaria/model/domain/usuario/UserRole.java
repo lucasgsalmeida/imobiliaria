@@ -1,4 +1,4 @@
-package com.lucas.imobiliaria.model.domain.users;
+package com.lucas.imobiliaria.model.domain.usuario;
 
 public enum UserRole {
     ADMIN("admin"),

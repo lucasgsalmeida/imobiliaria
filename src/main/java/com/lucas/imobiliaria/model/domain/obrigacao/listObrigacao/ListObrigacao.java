@@ -23,8 +23,11 @@ public class ListObrigacao {
     @JoinColumn(table="obrigacao", name="id_obrigacao", referencedColumnName="id")
     private Long idObrigacao;
 
-    @JoinColumn(table="clientes", name="id_cliente", referencedColumnName="id")
+    @JoinColumn(table="cliente", name="id_cliente", referencedColumnName="id")
     private Long idCliente;
+
+    @JoinColumn(table = "imovel", name="id_imovel", referencedColumnName="id")
+    private Long idImovel;
 
     private Date data;
 
@@ -32,6 +35,7 @@ public class ListObrigacao {
 
     public ListObrigacao(ListRequestDTO data) {
         this.idObrigacao = data.idObrigacao();
+        this.idImovel = data.idImovel();
         this.data = data.data();
         this.status = data.status();
     }
